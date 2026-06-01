@@ -1,0 +1,21 @@
+<!--components/poster/index.wxml-->
+<view class="poster-container" wx:if="{{showCanvas}}">
+  <canvas
+    type="2d"
+    id="poster-canvas"
+    class="poster-canvas"
+    style="width: {{canvasWidth}}px; height: {{canvasHeight}}px;"
+  ></canvas>
+</view>
+
+<view class="poster-actions">
+  <button class="action-btn" bindtap="generatePoster" disabled="{{generating}}">
+    {{generating ? '生成中...' : '生成海报'}}
+  </button>
+  <button class="action-btn secondary" wx:if="{{imageUrl}}" bindtap="savePoster">
+    保存到相册
+  </button>
+</view>
+
+<!-- 预览图 -->
+<image wx:if="{{imageUrl}}" src="{{imageUrl}}" class="preview-image" mode="widthFix" />

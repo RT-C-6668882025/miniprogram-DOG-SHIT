@@ -1,0 +1,53 @@
+<!--启动动画页 - Google Material Design 风格-->
+<view class="splash-page">
+  <!-- 动态渐变背景 -->
+  <view class="gradient-bg">
+    <view class="gradient-orb orb-1"></view>
+    <view class="gradient-orb orb-2"></view>
+    <view class="gradient-orb orb-3"></view>
+    <view class="gradient-orb orb-4"></view>
+  </view>
+
+  <!-- 波浪层 -->
+  <view class="waves">
+    <view class="wave wave-1"></view>
+    <view class="wave wave-2"></view>
+    <view class="wave wave-3"></view>
+  </view>
+
+  <!-- 中心Logo区 -->
+  <view class="center-stage" style="opacity:{{stageOpacity}};transform:scale({{stageScale}});">
+    <!-- 外圈涟漪 -->
+    <view class="ripple ripple-1"></view>
+    <view class="ripple ripple-2"></view>
+    <view class="ripple ripple-3"></view>
+
+    <!-- 主Logo圆形 -->
+    <view class="logo-circle">
+      <view class="logo-inner">
+        <text class="logo-initial">{{splashInitial}}</text>
+      </view>
+      <!-- 渐变边框动画 -->
+      <view class="logo-border-gradient"></view>
+    </view>
+
+    <!-- 名字区域 -->
+    <view class="name-section">
+      <text class="splash-name" style="opacity:{{nameOpacity}};">{{splashName}}</text>
+      <view class="name-underline" style="width:{{underlineWidth}}%;"></view>
+      <text class="splash-title" style="opacity:{{titleOpacity}};">{{splashTitle}}</text>
+    </view>
+  </view>
+
+  <!-- 底部加载点 -->
+  <view class="loading-dots" style="opacity:{{dotsOpacity}};">
+    <view class="dot dot-1"></view>
+    <view class="dot dot-2"></view>
+    <view class="dot dot-3"></view>
+  </view>
+
+  <!-- 粒子点缀 -->
+  <view class="particles">
+    <view class="particle" wx:for="{{particles}}" wx:key="index" style="left:{{item.x}}%;top:{{item.y}}%;animation-delay:{{item.delay}}s;background:{{item.color}};"></view>
+  </view>
+</view>

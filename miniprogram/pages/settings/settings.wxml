@@ -1,0 +1,113 @@
+<!--pages/settings/settings.wxml-->
+<view class="settings-page">
+  <!-- 顶部装饰条 -->
+  <view class="academic-header"></view>
+
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <text class="page-title">设置</text>
+    <view class="divider-line"></view>
+  </view>
+
+  <!-- 云开发配置 -->
+  <view class="section">
+    <view class="section-header-inline">
+      <text class="section-title">云开发配置</text>
+      <view class="status-badge {{cloudConfigured ? 'success' : 'warning'}}">
+        {{cloudConfigured ? '已配置' : '未配置'}}
+      </view>
+    </view>
+
+    <view class="setting-item">
+      <text class="setting-label">环境 ID</text>
+      <input
+        class="setting-input"
+        type="text"
+        placeholder="请输入云开发环境 ID"
+        value="{{envId}}"
+        bindinput="onEnvIdInput"
+      />
+    </view>
+
+    <view class="setting-hint">
+      <text class="hint-text">💡 在腾讯云控制台的云开发环境页面可以找到环境 ID</text>
+    </view>
+
+    <button class="action-btn primary" bindtap="saveCloudConfig" disabled="{{saving}}">
+      {{saving ? '保存中...' : '保存配置'}}
+    </button>
+  </view>
+
+  <!-- AI 服务配置 -->
+  <view class="section">
+    <view class="section-header-inline">
+      <text class="section-title">AI 服务配置</text>
+      <view class="status-badge {{aiConfigured ? 'success' : 'warning'}}">
+        {{aiConfigured ? '已开通' : '未开通'}}
+      </view>
+    </view>
+
+    <view class="config-info">
+      <text class="info-item">• 模型服务商：DeepSeek</text>
+      <text class="info-item">• 模型版本：deepseek-v3</text>
+      <text class="info-item">• 需在云开发控制台开通 AI 服务</text>
+    </view>
+
+    <button class="action-btn secondary" bindtap="openAIService">
+      前往开通 AI 服务
+    </button>
+  </view>
+
+  <!-- 基础库检查 -->
+  <view class="section">
+    <view class="section-header-inline">
+      <text class="section-title">基础库检查</text>
+      <view class="status-badge {{sdkVersionOk ? 'success' : 'error'}}">
+        {{sdkVersionOk ? '正常' : '需升级'}}
+      </view>
+    </view>
+
+    <view class="version-info">
+      <text class="version-label">当前版本：</text>
+      <text class="version-value">{{currentSDKVersion}}</text>
+    </view>
+    <view class="version-info">
+      <text class="version-label">要求版本：</text>
+      <text class="version-value">≥ 3.7.7</text>
+    </view>
+
+    <view class="setting-hint" wx:if="{{!sdkVersionOk}}">
+      <text class="hint-text">⚠️ 请在微信开发者工具的详情设置中调高基础库版本</text>
+    </view>
+  </view>
+
+  <!-- 关于 -->
+  <view class="section">
+    <view class="section-title">关于</view>
+
+    <view class="about-info">
+      <view class="about-row">
+        <text class="about-label">项目名称</text>
+        <text class="about-value">荒谬论文生成系统</text>
+      </view>
+      <view class="about-row">
+        <text class="about-label">版本号</text>
+        <text class="about-value">v1.0.0</text>
+      </view>
+      <view class="about-row">
+        <text class="about-label">开源协议</text>
+        <text class="about-value">MIT License</text>
+      </view>
+    </view>
+
+    <view class="disclaimer">
+      <text class="disclaimer-text">⚠️ 本项目仅供娱乐使用，所有生成内容均为 AI 虚构，不代表任何学术观点或客观事实。</text>
+    </view>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="footer-actions">
+    <button class="footer-btn" bindtap="clearCache">清除缓存</button>
+    <button class="footer-btn" bindtap="checkConfig">检查配置</button>
+  </view>
+</view>

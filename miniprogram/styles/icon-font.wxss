@@ -1,0 +1,93 @@
+/* styles/icon-font.wxss */
+/* 图标字体样式 - 替代emoji */
+
+/* 图标字体基础类 */
+.icon-font {
+  font-family: 'iconfont';
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 图标尺寸 */
+.icon-xs { font-size: 20rpx; }
+.icon-sm { font-size: 28rpx; }
+.icon-md { font-size: 36rpx; }
+.icon-lg { font-size: 48rpx; }
+.icon-xl { font-size: 64rpx; }
+
+/* 图标颜色 */
+.icon-primary { color: #2196F3; }
+.icon-success { color: #4CAF50; }
+.icon-warning { color: #FF9800; }
+.icon-danger { color: #F44336; }
+.icon-info { color: #00BCD4; }
+.icon-dark { color: #333333; }
+.icon-muted { color: #666666; }
+.icon-light { color: #999999; }
+
+/* 具体图标 - Unicode字符映射 */
+.icon-paper::before { content: '\e900'; }      /* 论文 */
+.icon-ranking::before { content: '\e901'; }    /* 排行榜 */
+.icon-search::before { content: '\e902'; }     /* 搜索 */
+.icon-chat::before { content: '\e903'; }       /* 对话 */
+.icon-log::before { content: '\e904'; }        /* 日志 */
+.icon-settings::before { content: '\e905'; }   /* 设置 */
+.icon-warning::before { content: '\e906'; }    /* 警告 */
+.icon-add::before { content: '\e907'; }        /* 添加 */
+.icon-refresh::before { content: '\e908'; }    /* 刷新 */
+.icon-delete::before { content: '\e909'; }     /* 删除 */
+.icon-close::before { content: '\e90a'; }      /* 关闭 */
+.icon-edit::before { content: '\e90b'; }       /* 编辑 */
+.icon-view::before { content: '\e90c'; }       /* 查看 */
+.icon-logout::before { content: '\e90d'; }     /* 退出 */
+.icon-idea::before { content: '\e90e'; }       /* 提示 */
+.icon-key::before { content: '\e90f'; }        /* 密钥 */
+.icon-sparkle::before { content: '\e910'; }    /* 闪光 */
+.icon-pdf::before { content: '\e911'; }        /* PDF */
+.icon-share::before { content: '\e912'; }      /* 分享 */
+.icon-image::before { content: '\e913'; }      /* 图片 */
+.icon-forbidden::before { content: '\e914'; }  /* 禁止 */
+.icon-star::before { content: '\e915'; }       /* 星星 */
+.icon-construction::before { content: '\e916'; } /* 施工中 */
+.icon-empty::before { content: '\e917'; }      /* 空状态 */
+.icon-thinking::before { content: '\e918'; }   /* 思考中 */
+.icon-error::before { content: '\e919'; }      /* 错误 */
+.icon-success::before { content: '\e91a'; }    /* 成功 */
+.icon-info::before { content: '\e91b'; }       /* 信息 */
+
+/* 动画效果 */
+.icon-spin {
+  animation: icon-spin 1s linear infinite;
+}
+
+@keyframes icon-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.icon-pulse {
+  animation: icon-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes icon-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* 按钮中的图标 */
+.btn .icon-font {
+  font-size: 1.2em;
+}
+
+.btn-icon-left .icon-font {
+  margin-right: 8rpx;
+}
+
+.btn-icon-right .icon-font {
+  margin-left: 8rpx;
+}

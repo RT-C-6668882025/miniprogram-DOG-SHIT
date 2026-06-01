@@ -1,0 +1,43 @@
+# 依赖
+node_modules/
+
+# 微信开发者工具私有配置
+project.private.config.json
+miniprogram/project.private.config.json
+
+# Claude Code 配置
+.claude/
+
+# Windows 系统文件
+Thumbs.db
+Desktop.ini
+nul
+
+# macOS 系统文件
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# 日志文件
+*.log
+
+# 编辑器配置
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 环境变量与密钥
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+
+# 构建产物
+dist/
+build/
+
+# 临时文件
+tmp/
+temp/

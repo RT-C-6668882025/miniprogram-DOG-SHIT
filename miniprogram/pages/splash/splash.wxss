@@ -1,0 +1,177 @@
+/* 启动过渡页 - 学术极简风 */
+
+.splash-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+/* ========== 顶部装饰条 ========== */
+.splash-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--academic-blue), var(--academic-blue-light));
+  z-index: 100;
+}
+
+/* ========== 中心舞台 ========== */
+.center-stage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+}
+
+/* ========== Logo方框 ========== */
+.logo-frame {
+  position: relative;
+  width: 200rpx;
+  height: 200rpx;
+  margin: 0 auto 50rpx;
+  border: 2rpx solid var(--academic-blue);
+  padding: 30rpx;
+  background: #ffffff;
+  box-shadow: 0 8rpx 40rpx rgba(30, 58, 95, 0.12);
+}
+
+/* 装饰角标 */
+.frame-corner {
+  position: absolute;
+  width: 16rpx;
+  height: 16rpx;
+  border-style: solid;
+  border-color: var(--academic-blue);
+}
+
+.frame-corner-tl {
+  top: -2rpx;
+  left: -2rpx;
+  border-width: 2rpx 0 0 2rpx;
+}
+
+.frame-corner-tr {
+  top: -2rpx;
+  right: -2rpx;
+  border-width: 2rpx 2rpx 0 0;
+}
+
+.frame-corner-bl {
+  bottom: -2rpx;
+  left: -2rpx;
+  border-width: 0 0 2rpx 2rpx;
+}
+
+.frame-corner-br {
+  bottom: -2rpx;
+  right: -2rpx;
+  border-width: 0 2rpx 2rpx 0;
+}
+
+/* Logo文字 */
+.logo-initial {
+  font-family: 'Times New Roman', serif;
+  font-size: 70rpx;
+  font-weight: 600;
+  color: var(--academic-blue);
+  letter-spacing: 2rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+/* ========== 名字区域 ========== */
+.name-section {
+  text-align: center;
+}
+
+.splash-name {
+  display: block;
+  font-family: 'Times New Roman', serif;
+  font-size: 44rpx;
+  font-weight: 500;
+  color: #1a1a1a;
+  letter-spacing: 4rpx;
+  margin-bottom: 12rpx;
+}
+
+.name-underline {
+  width: 50rpx;
+  height: 2rpx;
+  background: var(--academic-blue);
+  margin: 16rpx auto;
+}
+
+.splash-title {
+  display: block;
+  font-size: 22rpx;
+  font-weight: 400;
+  color: var(--academic-grey);
+  letter-spacing: 3rpx;
+  text-transform: uppercase;
+}
+
+/* ========== 底部加载条 ========== */
+.loading-bar {
+  position: absolute;
+  bottom: 150rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200rpx;
+  height: 2rpx;
+  background: var(--academic-border-light);
+  border-radius: 1rpx;
+  overflow: hidden;
+}
+
+.loading-progress {
+  height: 100%;
+  background: var(--academic-blue);
+  animation: loadingSlide 1.5s ease-in-out infinite;
+}
+
+@keyframes loadingSlide {
+  0% {
+    width: 0%;
+    margin-left: 0;
+  }
+  50% {
+    width: 70%;
+  }
+  100% {
+    width: 100%;
+    margin-left: 100%;
+  }
+}
+
+/* ========== 装饰元素 ========== */
+.deco-dots {
+  position: absolute;
+  bottom: 80rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12rpx;
+}
+
+.deco-dot {
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 50%;
+  background: var(--academic-grey);
+  opacity: 0.3;
+}
+
+.deco-dot.active {
+  background: var(--academic-blue);
+  opacity: 1;
+}

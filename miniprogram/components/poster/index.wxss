@@ -1,0 +1,38 @@
+/* components/poster/index.wxss */
+
+.poster-container {
+  display: none;
+}
+
+.poster-actions {
+  display: flex;
+  gap: 20rpx;
+  padding: 20rpx;
+}
+
+.action-btn {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  background: var(--academic-blue, #1e3a5f);
+  color: #ffffff;
+  border: none;
+}
+
+.action-btn.secondary {
+  background: #ffffff;
+  color: var(--academic-blue, #1e3a5f);
+  border: 1rpx solid var(--academic-blue, #1e3a5f);
+}
+
+.action-btn[disabled] {
+  opacity: 0.6;
+}
+
+.preview-image {
+  width: 100%;
+  border-radius: 8rpx;
+  margin-top: 20rpx;
+}

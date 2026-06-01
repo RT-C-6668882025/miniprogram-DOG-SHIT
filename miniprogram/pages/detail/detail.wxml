@@ -1,0 +1,143 @@
+<!--pages/detail/detail.wxml-->
+<view class="detail-page">
+  <!-- 顶部装饰条 -->
+  <view class="academic-header"></view>
+
+  <!-- 加载状态 -->
+  <view class="loading-state" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 错误状态 -->
+  <view class="error-state" wx:if="{{error}}">
+    <text class="error-icon">⚠️</text>
+    <text class="error-text">{{error}}</text>
+    <button class="error-btn" bindtap="loadPaper">重新加载</button>
+  </view>
+
+  <!-- 论文内容 -->
+  <view wx:else>
+    <!-- 期刊头部 -->
+    <view class="journal-header">
+      <text class="journal-name">NATURE</text>
+      <text class="journal-subtitle">Absurdity Edition · Vol {{paper.metadata.volume || 1}}</text>
+      <view class="divider-line"></view>
+    </view>
+
+    <!-- 分区标签 -->
+    <view class="zone-section">
+      <view class="zone-badge zone-{{zoneClass}}">
+        <text class="zone-text">{{paper.zone || 'C区'}}</text>
+      </view>
+      <view class="doi-text">DOI: {{paper.metadata.doi}}</view>
+    </view>
+
+    <!-- 标题区 -->
+    <view class="title-section">
+      <text class="paper-title">{{paper.title}}</text>
+      <view class="authors">
+        <text class="author" wx:for="{{paper.content.authors}}" wx:key="index">{{item}}</text>
+      </view>
+      <view class="affiliations">
+        <text class="affiliation" wx:for="{{paper.content.affiliations}}" wx:key="index">{{item}}</text>
+      </view>
+    </view>
+
+    <!-- AIF 评分卡片 -->
+    <view class="aif-card">
+      <view class="aif-header">
+        <text class="aif-label">荒谬影响因子</text>
+        <text class="aif-score">{{paper.aif.total}}</text>
+      </view>
+      <view class="aif-breakdown">
+        <view class="breakdown-item" wx:for="{{breakdownList}}" wx:key="key">
+          <text class="breakdown-label">{{item.label}}</text>
+          <view class="breakdown-bar">
+            <view class="breakdown-fill" style="width: {{item.value}}%;"></view>
+          </view>
+          <text class="breakdown-value">{{item.value}}%</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 摘要 -->
+    <view class="section-card">
+      <view class="section-title">摘要</view>
+      <text class="abstract-text">{{paper.content.sections.abstract}}</text>
+    </view>
+
+    <!-- 主要内容 -->
+    <view class="section-card">
+      <view class="section-title">研究内容</view>
+      <view class="content-block" wx:if="{{paper.content.sections.introduction}}">
+        <text class="subsection-title">引言</text>
+        <text class="content-text">{{paper.content.sections.introduction}}</text>
+      </view>
+      <view class="content-block" wx:if="{{paper.content.sections.results}}">
+        <text class="subsection-title">结果</text>
+        <text class="content-text">{{paper.content.sections.results}}</text>
+      </view>
+      <view class="content-block" wx:if="{{paper.content.sections.conclusion}}">
+        <text class="subsection-title">结论</text>
+        <text class="content-text">{{paper.content.sections.conclusion}}</text>
+      </view>
+    </view>
+
+    <!-- 操作按钮区 -->
+    <view class="action-section">
+      <button class="action-btn primary" bindtap="generatePDF">
+        <text class="btn-icon">📄</text>
+        <text>生成 PDF</text>
+      </button>
+      <button class="action-btn secondary" bindtap="showShareModal">
+        <text class="btn-icon">📤</text>
+        <text>分享论文</text>
+      </button>
+    </view>
+
+    <!-- 海报生成组件 -->
+    <view class="poster-section" wx:if="{{showPoster}}">
+      <poster paper="{{paper}}" bind:success="onPosterSuccess"></poster>
+    </view>
+
+    <!-- 审稿意见 -->
+    <view class="review-section" wx:if="{{paper.reviews}}">
+      <view class="section-title">审稿意见</view>
+      <view class="review-item" wx:for="{{paper.reviews.reviews}}" wx:key="reviewer">
+        <view class="review-header">
+          <text class="reviewer-name">{{item.reviewer}}</text>
+          <text class="review-score">评分: {{item.score}}</text>
+        </view>
+        <text class="review-comment">{{item.comments}}</text>
+      </view>
+      <view class="editor-decision">
+        <text class="decision-label">编辑决定:</text>
+        <text class="decision-text">{{paper.reviews.editorDecision.comments}}</text>
+      </view>
+    </view>
+
+    <!-- 底部声明 -->
+    <view class="footer-notice">
+      <text class="notice-text">⚠️ 本文由 AI 生成，仅供娱乐，不代表任何学术观点</text>
+    </view>
+  </view>
+</view>
+
+<!-- 分享弹窗 -->
+<view class="share-modal" wx:if="{{shareModalVisible}}" catchtap="hideShareModal">
+  <view class="share-content" catchtap="stopPropagation">
+    <view class="share-title">分享论文</view>
+    <view class="share-options">
+      <button class="share-option" open-type="share">
+        <text class="share-icon">💬</text>
+        <text>转发给朋友</text>
+      </button>
+      <button class="share-option" bindtap="generatePoster">
+        <text class="share-icon">🖼️</text>
+        <text>生成海报</text>
+      </button>
+    </view>
+    <button class="close-btn" catchtap="hideShareModal">关闭</button>
+  </view>
+</view>

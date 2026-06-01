@@ -1,0 +1,229 @@
+/* 荒谬学术排行榜 - 学术极简风 */
+
+.ranking-page {
+  min-height: 100vh;
+  background: #ffffff;
+}
+
+/* ========== 顶部装饰条 ========== */
+.academic-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--academic-blue), var(--academic-blue-light));
+  z-index: 1000;
+}
+
+/* ========== 期刊标题区 ========== */
+.journal-header {
+  padding: 40rpx 40rpx 20rpx;
+  text-align: center;
+  border-bottom: 1rpx solid var(--academic-border-light);
+}
+
+.journal-name {
+  display: block;
+  font-family: 'Times New Roman', serif;
+  font-size: 36rpx;
+  font-weight: 600;
+  letter-spacing: 4rpx;
+  color: var(--academic-blue);
+}
+
+.journal-subtitle {
+  display: block;
+  font-size: 20rpx;
+  color: var(--academic-grey);
+  letter-spacing: 2rpx;
+  text-transform: uppercase;
+  margin-top: 8rpx;
+}
+
+.divider-line {
+  width: 60rpx;
+  height: 2rpx;
+  background: var(--academic-blue);
+  margin: 20rpx auto 0;
+}
+
+/* ========== 标签切换 ========== */
+.tab-container {
+  display: flex;
+  padding: 20rpx 40rpx;
+  border-bottom: 1rpx solid var(--academic-border-light);
+  background: var(--academic-bg);
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx 0;
+  margin: 0 8rpx;
+  border-radius: 4rpx;
+  transition: all 0.2s ease;
+}
+
+.tab-item.active {
+  background: #ffffff;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.tab-text {
+  font-family: 'Times New Roman', serif;
+  font-size: 24rpx;
+  color: var(--academic-grey);
+}
+
+.tab-item.active .tab-text {
+  color: var(--academic-blue);
+  font-weight: 500;
+}
+
+/* ========== 排行榜列表 ========== */
+.ranking-list {
+  padding: 20rpx 40rpx;
+}
+
+.ranking-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  margin-bottom: 16rpx;
+  background: #ffffff;
+  border: 1rpx solid var(--academic-border-light);
+  border-radius: 8rpx;
+  transition: all 0.2s ease;
+}
+
+.ranking-item:active {
+  border-color: var(--academic-blue);
+  box-shadow: 0 4rpx 16rpx rgba(30, 58, 95, 0.1);
+}
+
+/* 排名徽章 */
+.rank-badge {
+  width: 56rpx;
+  height: 56rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.rank-1 {
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  box-shadow: 0 4rpx 12rpx rgba(255, 215, 0, 0.3);
+}
+
+.rank-2 {
+  background: linear-gradient(135deg, #c0c0c0, #e8e8e8);
+  box-shadow: 0 4rpx 12rpx rgba(192, 192, 192, 0.3);
+}
+
+.rank-3 {
+  background: linear-gradient(135deg, #cd7f32, #e5a86d);
+  box-shadow: 0 4rpx 12rpx rgba(205, 127, 50, 0.3);
+}
+
+.rank-normal {
+  background: var(--academic-bg);
+  border: 1rpx solid var(--academic-border-light);
+}
+
+.rank-text {
+  font-family: 'Times New Roman', serif;
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.rank-normal .rank-text {
+  color: var(--academic-grey);
+}
+
+/* 论文信息 */
+.paper-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.paper-title {
+  display: block;
+  font-family: 'Times New Roman', serif;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #1a1a1a;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.paper-meta {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-top: 8rpx;
+  flex-wrap: wrap;
+}
+
+.meta-item {
+  font-size: 20rpx;
+  color: var(--academic-grey);
+  padding: 4rpx 12rpx;
+  background: var(--academic-bg);
+  border-radius: 4rpx;
+  font-family: 'Times New Roman', serif;
+}
+
+/* 分区标签 */
+.zone-SSS { color: #dc2626; background: rgba(220, 38, 38, 0.1); }
+.zone-S { color: #ea580c; background: rgba(234, 88, 12, 0.1); }
+.zone-A { color: #16a34a; background: rgba(22, 163, 74, 0.1); }
+.zone-B { color: #2563eb; background: rgba(37, 99, 235, 0.1); }
+.zone-C { color: #6b7280; background: rgba(107, 114, 128, 0.1); }
+
+/* 引用数 */
+.citation-count {
+  text-align: right;
+  flex-shrink: 0;
+  margin-left: 16rpx;
+}
+
+.citation-number {
+  display: block;
+  font-family: 'Times New Roman', serif;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--academic-blue);
+}
+
+.citation-label {
+  font-size: 18rpx;
+  color: var(--academic-grey);
+}
+
+/* ========== 空状态 ========== */
+.empty-state {
+  padding: 120rpx 40rpx;
+  text-align: center;
+}
+
+.empty-text {
+  display: block;
+  font-family: 'Times New Roman', serif;
+  font-size: 28rpx;
+  color: var(--academic-grey);
+  margin-bottom: 12rpx;
+}
+
+.empty-hint {
+  display: block;
+  font-size: 22rpx;
+  color: var(--academic-grey);
+  opacity: 0.6;
+}

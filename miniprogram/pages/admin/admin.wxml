@@ -1,0 +1,241 @@
+<!-- pages/admin/admin.wxml -->
+<!-- 后台管理系统主界面 -->
+
+<!-- 登录中提示 -->
+<view class="login-loading" wx:if="{{showLoginLoading}}">
+  <view class="loading-mask"></view>
+  <view class="loading-container">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">正在验证管理员身份...</text>
+  </view>
+</view>
+
+<!-- 主界面 -->
+<view class="admin-container" wx:if="{{isLoggedIn}}">
+  <!-- 顶部导航栏 -->
+  <view class="admin-header">
+    <view class="header-left">
+      <text class="header-title"><text class="icon-font icon-search icon-md"></text> 管理后台</text>
+    </view>
+    <view class="header-right">
+      <view class="admin-info">
+        <text class="admin-name">{{adminInfo.username}}</text>
+        <text class="admin-role">{{adminInfo.role === 'super_admin' ? '超级管理员' : '管理员'}}</text>
+      </view>
+      <button class="btn btn-danger btn-sm" bindtap="logout">
+        <text class="icon-font icon-logout"></text> 退出
+      </button>
+    </view>
+  </view>
+
+  <!-- 侧边栏 -->
+  <view class="admin-sidebar">
+    <view 
+      class="sidebar-item {{activeModule === item.id ? 'active' : ''}}" 
+      wx:for="{{modules}}" 
+      wx:key="id"
+      data-module="{{item.id}}"
+      bindtap="switchModule"
+    >
+      <text class="sidebar-icon" style="color: {{item.color}}">
+        <text class="icon-font {{item.iconClass}}"></text>
+      </text>
+      <text class="sidebar-name">{{item.name}}</text>
+    </view>
+  </view>
+
+  <!-- 主内容区 -->
+  <view class="admin-content">
+    <!-- 数据概览模块 -->
+    <view class="content-module" wx:if="{{activeModule === 'dashboard'}}">
+      <view class="module-header">
+        <text class="module-title"><text class="icon-font icon-search icon-md"></text> 数据概览</text>
+      </view>
+      <view class="stats-grid">
+        <view class="stat-card">
+          <text class="stat-value">{{statistics.totalPapers}}</text>
+          <text class="stat-label">论文总数</text>
+        </view>
+        <view class="stat-card">
+          <text class="stat-value">{{statistics.todayPapers}}</text>
+          <text class="stat-label">今日生成</text>
+        </view>
+        <view class="stat-card">
+          <text class="stat-value">{{statistics.violationPapers}}</text>
+          <text class="stat-label">违规论文</text>
+        </view>
+        <view class="stat-card">
+          <text class="stat-value">{{statistics.pendingReview}}</text>
+          <text class="stat-label">待审核</text>
+        </view>
+      </view>
+      <view class="welcome-section">
+        <text class="welcome-title"><text class="icon-font icon-info icon-lg"></text> 欢迎使用管理后台</text>
+        <text class="welcome-desc">请从左侧菜单选择功能模块</text>
+      </view>
+    </view>
+
+    <!-- 敏感词管理模块 -->
+    <view class="content-module" wx:if="{{activeModule === 'sensitive'}}">
+      <view class="module-header">
+        <text class="module-title"><text class="icon-font icon-search icon-md"></text> 敏感词管理</text>
+        <view class="module-actions">
+          <button class="btn btn-default btn-sm" bindtap="refreshSensitiveWords">
+            <text class="icon-font icon-refresh"></text> 刷新
+          </button>
+          <button class="btn btn-primary btn-sm" bindtap="showAddWordModal">
+            <text class="icon-font icon-add"></text> 添加敏感词
+          </button>
+        </view>
+      </view>
+      
+      <!-- 敏感词列表 -->
+      <view class="word-list">
+        <view class="word-item" wx:for="{{sensitiveWords}}" wx:key="id">
+          <view class="word-info">
+            <text class="word-text">{{item.word}}</text>
+            <view class="word-tags">
+              <text class="tag type-{{item.type}}">{{item.typeName}}</text>
+              <text class="tag level-{{item.level}}">{{item.levelName}}</text>
+            </view>
+          </view>
+          <view class="word-actions">
+            <button 
+              class="btn btn-danger btn-xs" 
+              data-id="{{item.id}}"
+              data-word="{{item.word}}"
+              bindtap="deleteSensitiveWord"
+            >
+              <text class="icon-font icon-delete"></text> 删除
+            </button>
+          </view>
+        </view>
+        <view class="empty-state" wx:if="{{sensitiveWords.length === 0}}">
+          <text class="icon-font icon-empty icon-xl"></text>
+          <text>暂无敏感词数据</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 操作日志模块 -->
+    <view class="content-module" wx:if="{{activeModule === 'log'}}">
+      <view class="module-header">
+        <text class="module-title"><text class="icon-font icon-log icon-md"></text> 操作日志</text>
+      </view>
+      <view class="log-list">
+        <view class="log-item" wx:for="{{operationLogs}}" wx:key="id">
+          <view class="log-header">
+            <text class="log-action">{{item.action}}</text>
+            <text class="log-time">{{item.timeStr}}</text>
+          </view>
+          <text class="log-detail">{{item.detail}}</text>
+        </view>
+        <view class="empty-state" wx:if="{{operationLogs.length === 0}}">
+          <text class="icon-font icon-empty icon-xl"></text>
+          <text>暂无操作日志</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 违规论文管理模块 -->
+    <view class="content-module" wx:if="{{activeModule === 'violation'}}">
+      <view class="module-header">
+        <text class="module-title"><text class="icon-font icon-forbidden icon-md"></text> 违规论文管理</text>
+      </view>
+      <view class="placeholder-section">
+        <text class="icon-font icon-construction icon-xl"></text>
+        <text class="placeholder-text">功能开发中...</text>
+        <text class="placeholder-desc">违规论文审核功能即将上线</text>
+      </view>
+    </view>
+
+    <!-- 评分人工调整模块 -->
+    <view class="content-module" wx:if="{{activeModule === 'score'}}">
+      <view class="module-header">
+        <text class="module-title"><text class="icon-font icon-star icon-md"></text> 评分人工调整</text>
+      </view>
+      <view class="placeholder-section">
+        <text class="icon-font icon-construction icon-xl"></text>
+        <text class="placeholder-text">功能开发中...</text>
+        <text class="placeholder-desc">论文评分调整功能即将上线</text>
+      </view>
+    </view>
+
+    <!-- 排行榜控制模块 -->
+    <view class="content-module" wx:if="{{activeModule === 'ranking'}}">
+      <view class="module-header">
+        <text class="module-title"><text class="icon-font icon-ranking icon-md"></text> 排行榜控制</text>
+      </view>
+      <view class="placeholder-section">
+        <text class="icon-font icon-construction icon-xl"></text>
+        <text class="placeholder-text">功能开发中...</text>
+        <text class="placeholder-desc">排行榜管理功能即将上线</text>
+      </view>
+    </view>
+
+    <!-- 提示词管理模块 -->
+    <view class="content-module" wx:if="{{activeModule === 'prompt'}}">
+      <view class="module-header">
+        <text class="module-title"><text class="icon-font icon-chat icon-md"></text> 提示词管理</text>
+      </view>
+      <view class="placeholder-section">
+        <text class="icon-font icon-construction icon-xl"></text>
+        <text class="placeholder-text">功能开发中...</text>
+        <text class="placeholder-desc">AI提示词管理功能即将上线</text>
+      </view>
+    </view>
+
+    <!-- 系统设置模块 -->
+    <view class="content-module" wx:if="{{activeModule === 'settings'}}">
+      <view class="module-header">
+        <text class="module-title"><text class="icon-font icon-settings icon-md"></text> 系统设置</text>
+      </view>
+      <view class="placeholder-section">
+        <text class="icon-font icon-construction icon-xl"></text>
+        <text class="placeholder-text">功能开发中...</text>
+        <text class="placeholder-desc">系统配置功能即将上线</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 添加敏感词弹窗 -->
+<view class="modal" wx:if="{{showAddWordModal}}">
+  <view class="modal-mask" bindtap="closeAddWordModal"></view>
+  <view class="modal-container">
+    <view class="modal-header">
+      <text class="modal-title"><text class="icon-font icon-add icon-md"></text> 添加敏感词</text>
+    </view>
+    <view class="modal-body">
+      <view class="form-item">
+        <text class="form-label">敏感词</text>
+        <input 
+          class="form-input" 
+          placeholder="请输入敏感词" 
+          value="{{newWord}}"
+          bindinput="onNewWordInput"
+        />
+      </view>
+      <view class="form-item">
+        <text class="form-label">类型</text>
+        <picker mode="selector" range="{{wordTypes}}" range-key="label" bindchange="onWordTypeChange">
+          <view class="form-picker">
+            {{newWordTypeLabel}}
+          </view>
+        </picker>
+      </view>
+      <view class="form-item">
+        <text class="form-label">级别</text>
+        <picker mode="selector" range="{{wordLevels}}" range-key="label" bindchange="onWordLevelChange">
+          <view class="form-picker">
+            {{newWordLevelLabel}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="modal-footer">
+      <button class="btn btn-default btn-md" bindtap="closeAddWordModal">取消</button>
+      <button class="btn btn-primary btn-md" bindtap="addSensitiveWord">添加</button>
+    </view>
+  </view>
+</view>

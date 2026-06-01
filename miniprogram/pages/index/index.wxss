@@ -1,0 +1,270 @@
+/* 荒谬论文首页 - 学术极简风 */
+
+.page {
+  min-height: 100vh;
+  position: relative;
+  background: #ffffff;
+}
+
+/* ========== 顶部装饰条 ========== */
+.academic-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #1e3a5f, #2d5a87);
+  z-index: 100;
+}
+
+/* ========== 主内容区 ========== */
+.content {
+  position: relative;
+  z-index: 1;
+  padding: 60rpx 40rpx 40rpx;
+  max-width: 750rpx;
+  margin: 0 auto;
+}
+
+/* 动画容器 */
+.anim-container {
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+.anim-container:nth-child(1) { animation-delay: 0.05s; }
+.anim-container:nth-child(2) { animation-delay: 0.1s; }
+.anim-container:nth-child(3) { animation-delay: 0.15s; }
+.anim-container:nth-child(4) { animation-delay: 0.2s; }
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20rpx);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========== Logo 区 ========== */
+.logo-section {
+  position: relative;
+  margin-bottom: 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.journal-name {
+  font-family: 'Times New Roman', serif;
+  font-size: 48rpx;
+  font-weight: 600;
+  letter-spacing: 6rpx;
+  color: #1e3a5f;
+  margin-bottom: 8rpx;
+}
+
+.journal-subtitle {
+  font-size: 22rpx;
+  color: #6b7280;
+  letter-spacing: 3rpx;
+  text-transform: uppercase;
+}
+
+.divider-line {
+  width: 60rpx;
+  height: 2rpx;
+  background: #2d5a87;
+  margin: 20rpx auto 0;
+}
+
+/* ========== 简介区 ========== */
+.intro-section {
+  text-align: center;
+  margin-bottom: 50rpx;
+}
+
+.intro-text {
+  display: block;
+  font-family: 'Times New Roman', serif;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin-bottom: 8rpx;
+}
+
+.intro-subtext {
+  display: block;
+  font-size: 22rpx;
+  color: #6b7280;
+  font-style: italic;
+}
+
+/* ========== 核心功能入口 ========== */
+.feature-section {
+  display: flex;
+  gap: 16rpx;
+  margin-bottom: 50rpx;
+}
+
+.feature-card {
+  flex: 1;
+  padding: 32rpx 24rpx;
+  background: #ffffff;
+  border: 1rpx solid #f3f4f6;
+  border-radius: 8rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.feature-card:active {
+  border-color: #1e3a5f;
+  box-shadow: 0 4rpx 16rpx rgba(30, 58, 95, 0.1);
+  transform: translateY(-2rpx);
+}
+
+.feature-icon {
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f9fafb;
+  border-radius: 8rpx;
+  margin-bottom: 16rpx;
+}
+
+.icon-emoji {
+  font-size: 40rpx;
+}
+
+/* 图标字体 */
+.icon-font {
+  font-family: 'iconfont';
+  font-size: 40rpx;
+  line-height: 1;
+}
+
+.icon-paper {
+  color: #2196F3;
+}
+
+.icon-ranking {
+  color: #FF9800;
+}
+
+.feature-title {
+  font-family: 'Times New Roman', serif;
+  font-size: 26rpx;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin-bottom: 8rpx;
+}
+
+.feature-desc {
+  font-size: 20rpx;
+  color: #6b7280;
+}
+
+/* ========== 示例论文区 ========== */
+.example-section {
+  margin-bottom: 40rpx;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-family: 'Times New Roman', serif;
+  font-size: 24rpx;
+  font-weight: 500;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 2rpx;
+  margin-right: 16rpx;
+}
+
+.section-line {
+  flex: 1;
+  height: 1rpx;
+  background: #f3f4f6;
+}
+
+/* 论文列表 */
+.paper-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.example-card {
+  padding: 24rpx;
+  background: #f9fafb;
+  border: 1rpx solid #f3f4f6;
+  border-radius: 8rpx;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.example-card:active {
+  border-color: #1e3a5f;
+  box-shadow: 0 4rpx 16rpx rgba(30, 58, 95, 0.1);
+  transform: translateY(-2rpx);
+}
+
+.example-badge {
+  display: inline-block;
+  padding: 4rpx 12rpx;
+  background: rgba(220, 38, 38, 0.1);
+  color: #dc2626;
+  font-size: 20rpx;
+  border-radius: 4rpx;
+  margin-bottom: 12rpx;
+  font-family: 'Times New Roman', serif;
+}
+
+.example-title {
+  display: block;
+  font-family: 'Times New Roman', serif;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #1a1a1a;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+
+.example-meta {
+  display: flex;
+  gap: 12rpx;
+}
+
+.meta-tag {
+  padding: 6rpx 12rpx;
+  background: #ffffff;
+  border: 1rpx solid #f3f4f6;
+  border-radius: 4rpx;
+  font-size: 20rpx;
+  color: #6b7280;
+  font-family: 'Times New Roman', serif;
+}
+
+/* ========== 底部 ========== */
+.footer {
+  text-align: center;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #f3f4f6;
+}
+
+.footer-text {
+  font-family: 'Times New Roman', serif;
+  font-size: 20rpx;
+  color: #6b7280;
+  font-style: italic;
+}

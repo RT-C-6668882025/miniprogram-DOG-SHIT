@@ -1,0 +1,458 @@
+/* pages/detail/detail.wxss - 论文详情页 */
+
+.detail-page {
+  min-height: 100vh;
+  background: #ffffff;
+  padding-bottom: 40rpx;
+}
+
+/* ========== 加载状态 ========== */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 4rpx solid var(--academic-border-light);
+  border-top-color: var(--academic-blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  margin-top: 24rpx;
+  font-size: 24rpx;
+  color: var(--academic-grey);
+}
+
+/* ========== 错误状态 ========== */
+.error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 40rpx;
+}
+
+.error-icon {
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+}
+
+.error-text {
+  font-size: 26rpx;
+  color: var(--academic-grey);
+  margin-bottom: 30rpx;
+  text-align: center;
+}
+
+.error-btn {
+  padding: 16rpx 48rpx;
+  background: var(--academic-blue);
+  color: #ffffff;
+  border: none;
+  border-radius: 6rpx;
+  font-size: 24rpx;
+}
+
+/* ========== 顶部装饰条 ========== */
+.academic-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--academic-blue), var(--academic-blue-light));
+  z-index: 1000;
+}
+
+/* ========== 期刊头部 ========== */
+.journal-header {
+  padding: 40rpx 40rpx 20rpx;
+  text-align: center;
+  border-bottom: 1rpx solid var(--academic-border-light);
+}
+
+.journal-name {
+  display: block;
+  font-family: 'Times New Roman', serif;
+  font-size: 48rpx;
+  font-weight: 600;
+  letter-spacing: 4rpx;
+  color: var(--academic-blue);
+}
+
+.journal-subtitle {
+  display: block;
+  font-size: 22rpx;
+  color: var(--academic-grey);
+  letter-spacing: 2rpx;
+  text-transform: uppercase;
+  margin-top: 8rpx;
+}
+
+.divider-line {
+  width: 60rpx;
+  height: 2rpx;
+  background: var(--academic-blue);
+  margin: 20rpx auto 0;
+}
+
+/* ========== 分区标签区 ========== */
+.zone-section {
+  padding: 30rpx 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.zone-badge {
+  padding: 12rpx 32rpx;
+  border-radius: 50rpx;
+  font-size: 24rpx;
+  font-weight: 500;
+}
+
+.zone-text {
+  color: #ffffff;
+}
+
+.zone-SSS { background: #dc2626; }
+.zone-S { background: #ea580c; }
+.zone-A { background: #16a34a; }
+.zone-B { background: #2563eb; }
+.zone-C { background: #6b7280; }
+
+.doi-text {
+  font-size: 22rpx;
+  color: var(--academic-grey);
+  font-family: 'Times New Roman', serif;
+}
+
+/* ========== 标题区 ========== */
+.title-section {
+  padding: 20rpx 40rpx 30rpx;
+}
+
+.paper-title {
+  display: block;
+  font-family: 'Times New Roman', serif;
+  font-size: 40rpx;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.5;
+  margin-bottom: 24rpx;
+}
+
+.authors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-bottom: 16rpx;
+}
+
+.author {
+  font-size: 26rpx;
+  color: var(--academic-blue);
+}
+
+.affiliations {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.affiliation {
+  font-size: 22rpx;
+  color: var(--academic-grey);
+  font-style: italic;
+}
+
+/* ========== AIF 评分卡片 ========== */
+.aif-card {
+  margin: 20rpx 40rpx;
+  padding: 32rpx;
+  background: var(--academic-bg);
+  border: 1rpx solid var(--academic-border-light);
+  border-radius: 8rpx;
+}
+
+.aif-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 24rpx;
+}
+
+.aif-label {
+  font-size: 26rpx;
+  color: var(--academic-grey);
+}
+
+.aif-score {
+  font-family: 'Times New Roman', serif;
+  font-size: 56rpx;
+  font-weight: 600;
+  color: var(--academic-blue);
+}
+
+.aif-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.breakdown-item {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.breakdown-label {
+  width: 150rpx;
+  font-size: 22rpx;
+  color: var(--academic-grey);
+}
+
+.breakdown-bar {
+  flex: 1;
+  height: 8rpx;
+  background: #e5e7eb;
+  border-radius: 4rpx;
+  overflow: hidden;
+}
+
+.breakdown-fill {
+  height: 100%;
+  background: var(--academic-blue);
+  border-radius: 4rpx;
+  transition: width 0.3s ease;
+}
+
+.breakdown-value {
+  width: 80rpx;
+  text-align: right;
+  font-size: 20rpx;
+  color: var(--academic-blue);
+  font-weight: 500;
+}
+
+/* ========== 内容卡片 ========== */
+.section-card {
+  margin: 20rpx 40rpx;
+  padding: 32rpx;
+  background: #ffffff;
+  border: 1rpx solid var(--academic-border-light);
+  border-radius: 8rpx;
+}
+
+.section-title {
+  font-family: 'Times New Roman', serif;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--academic-blue);
+  margin-bottom: 20rpx;
+}
+
+.abstract-text {
+  font-size: 26rpx;
+  color: #374151;
+  line-height: 1.8;
+}
+
+.content-block {
+  margin-bottom: 24rpx;
+}
+
+.content-block:last-child {
+  margin-bottom: 0;
+}
+
+.subsection-title {
+  display: block;
+  font-size: 24rpx;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin-bottom: 12rpx;
+}
+
+.content-text {
+  font-size: 26rpx;
+  color: #374151;
+  line-height: 1.8;
+}
+
+/* ========== 操作按钮区 ========== */
+.action-section {
+  display: flex;
+  gap: 16rpx;
+  padding: 20rpx 40rpx;
+}
+
+.action-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  height: 80rpx;
+  border-radius: 8rpx;
+  font-size: 26rpx;
+  border: none;
+}
+
+.action-btn.primary {
+  background: var(--academic-blue);
+  color: #ffffff;
+}
+
+.action-btn.secondary {
+  background: #ffffff;
+  color: var(--academic-blue);
+  border: 1rpx solid var(--academic-blue);
+}
+
+.btn-icon {
+  font-size: 32rpx;
+}
+
+/* ========== 审稿意见区 ========== */
+.review-section {
+  margin: 20rpx 40rpx;
+  padding: 32rpx;
+  background: #fffbeb;
+  border: 1rpx solid #fbbf24;
+  border-radius: 8rpx;
+}
+
+.review-item {
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #fde68a;
+}
+
+.review-item:last-child {
+  border-bottom: none;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12rpx;
+}
+
+.reviewer-name {
+  font-weight: 500;
+  color: #92400e;
+}
+
+.review-score {
+  font-size: 22rpx;
+  color: #b45309;
+}
+
+.review-comment {
+  font-size: 24rpx;
+  color: #78350f;
+  line-height: 1.6;
+}
+
+.editor-decision {
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+  border-top: 2rpx solid #fbbf24;
+}
+
+.decision-label {
+  font-weight: 500;
+  color: #92400e;
+}
+
+.decision-text {
+  color: #78350f;
+}
+
+/* ========== 底部声明 ========== */
+.footer-notice {
+  margin: 40rpx;
+  padding: 20rpx;
+  background: #fef2f2;
+  border: 1rpx solid #fecaca;
+  border-radius: 8rpx;
+  text-align: center;
+}
+
+.notice-text {
+  font-size: 22rpx;
+  color: #dc2626;
+}
+
+/* ========== 分享弹窗 ========== */
+.share-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-end;
+  z-index: 9999;
+}
+
+.share-content {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 24rpx 24rpx 0 0;
+  padding: 40rpx;
+}
+
+.share-title {
+  font-size: 32rpx;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.share-options {
+  display: flex;
+  gap: 20rpx;
+  margin-bottom: 40rpx;
+}
+
+.share-option {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16rpx;
+  padding: 40rpx 20rpx;
+  background: var(--academic-bg);
+  border: 1rpx solid var(--academic-border-light);
+  border-radius: 12rpx;
+  font-size: 24rpx;
+}
+
+.share-icon {
+  font-size: 48rpx;
+}
+
+.close-btn {
+  width: 100%;
+  height: 80rpx;
+  background: #ffffff;
+  border: 1rpx solid var(--academic-border-light);
+  border-radius: 8rpx;
+  font-size: 26rpx;
+}

@@ -1,0 +1,23 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/paper/paper",
+    "pages/ranking/ranking",
+    "pages/detail/detail",
+    "pages/profile/profile",
+    "pages/settings/settings",
+    "pages/admin/admin",
+    "pages/pdf-preview/pdf-preview"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "荒谬论文",
+    "backgroundColor": "#ffffff",
+    "backgroundTextStyle": "light",
+    "enablePullDownRefresh": false
+  },
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json"
+}

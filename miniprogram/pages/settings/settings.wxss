@@ -1,0 +1,234 @@
+/* pages/settings/settings.wxss - 设置页面 */
+
+.settings-page {
+  min-height: 100vh;
+  background: #ffffff;
+  padding-bottom: 40rpx;
+}
+
+/* ========== 顶部装饰条 ========== */
+.academic-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--academic-blue), var(--academic-blue-light));
+  z-index: 1000;
+}
+
+/* ========== 页面标题 ========== */
+.page-header {
+  padding: 40rpx 40rpx 20rpx;
+  text-align: center;
+}
+
+.page-title {
+  display: block;
+  font-family: 'Times New Roman', serif;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: var(--academic-blue);
+  letter-spacing: 4rpx;
+}
+
+.divider-line {
+  width: 60rpx;
+  height: 2rpx;
+  background: var(--academic-blue);
+  margin: 20rpx auto 0;
+}
+
+/* ========== 章节 ========== */
+.section {
+  margin: 20rpx 40rpx;
+  padding: 32rpx;
+  background: #ffffff;
+  border: 1rpx solid var(--academic-border-light);
+  border-radius: 8rpx;
+}
+
+.section-header-inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+}
+
+.section-title {
+  font-size: 26rpx;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.status-badge {
+  padding: 6rpx 16rpx;
+  border-radius: 4rpx;
+  font-size: 20rpx;
+  color: #ffffff;
+}
+
+.status-badge.success {
+  background: #16a34a;
+}
+
+.status-badge.warning {
+  background: #f59e0b;
+}
+
+.status-badge.error {
+  background: #dc2626;
+}
+
+/* ========== 设置项 ========== */
+.setting-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.setting-label {
+  width: 140rpx;
+  font-size: 26rpx;
+  color: #374151;
+}
+
+.setting-input {
+  flex: 1;
+  padding: 16rpx 20rpx;
+  background: var(--academic-bg);
+  border: 1rpx solid var(--academic-border-light);
+  border-radius: 6rpx;
+  font-size: 26rpx;
+  color: #1a1a1a;
+}
+
+.setting-hint {
+  padding: 16rpx;
+  background: #fef3c7;
+  border: 1rpx solid #fde68a;
+  border-radius: 6rpx;
+  margin-bottom: 20rpx;
+}
+
+.hint-text {
+  font-size: 22rpx;
+  color: #92400e;
+  line-height: 1.5;
+}
+
+/* ========== 配置信息 ========== */
+.config-info,
+.about-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+  margin-bottom: 20rpx;
+}
+
+.info-item {
+  font-size: 24rpx;
+  color: var(--academic-grey);
+  line-height: 1.6;
+}
+
+/* ========== 版本信息 ========== */
+.version-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.version-label {
+  font-size: 24rpx;
+  color: var(--academic-grey);
+}
+
+.version-value {
+  font-family: 'Times New Roman', serif;
+  font-size: 24rpx;
+  color: #1a1a1a;
+}
+
+/* ========== 关于信息 ========== */
+.about-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12rpx 0;
+  border-bottom: 1rpx solid var(--academic-border-light);
+}
+
+.about-row:last-child {
+  border-bottom: none;
+}
+
+.about-label {
+  font-size: 24rpx;
+  color: var(--academic-grey);
+}
+
+.about-value {
+  font-size: 24rpx;
+  color: #1a1a1a;
+}
+
+/* ========== 免责声明 ========== */
+.disclaimer {
+  padding: 16rpx;
+  background: #fef2f2;
+  border: 1rpx solid #fecaca;
+  border-radius: 6rpx;
+  margin-top: 20rpx;
+}
+
+.disclaimer-text {
+  font-size: 22rpx;
+  color: #dc2626;
+  line-height: 1.6;
+}
+
+/* ========== 按钮 ========== */
+.action-btn {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 8rpx;
+  font-size: 26rpx;
+  border: none;
+  margin-top: 20rpx;
+}
+
+.action-btn.primary {
+  background: var(--academic-blue);
+  color: #ffffff;
+}
+
+.action-btn.primary[disabled] {
+  opacity: 0.6;
+}
+
+.action-btn.secondary {
+  background: #ffffff;
+  color: var(--academic-blue);
+  border: 1rpx solid var(--academic-blue);
+}
+
+/* ========== 底部操作 ========== */
+.footer-actions {
+  display: flex;
+  gap: 16rpx;
+  padding: 0 40rpx 40rpx;
+}
+
+.footer-btn {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #ffffff;
+  border: 1rpx solid var(--academic-border-light);
+  border-radius: 8rpx;
+  font-size: 24rpx;
+  color: var(--academic-grey);
+}

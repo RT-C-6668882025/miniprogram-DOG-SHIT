@@ -1,0 +1,8 @@
+{
+  "envId": "your-env-id",
+  "functionName": "pdfGenerator",
+  "runtime": "Nodejs16.13",
+  "timeout": 120,
+  "memorySize": 1024,
+  "handler": "index.main"
+}

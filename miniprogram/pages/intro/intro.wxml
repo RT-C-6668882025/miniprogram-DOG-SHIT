@@ -1,0 +1,39 @@
+<!--高级开场动画 - 三阶段效果-->
+<view class="intro-page">
+  <!-- WebGL 3D粒子背景 -->
+  <canvas type="webgl" id="webgl-canvas" class="webgl-canvas"></canvas>
+
+  <!-- 光晕先行层 -->
+  <view class="glow-first" style="opacity:{{glowOpacity}};"></view>
+
+  <!-- 呼吸辉光背景 - 持续阶段 -->
+  <view class="sustain-glow" style="opacity:{{sustainGlowOpacity}};"></view>
+
+  <!-- 精致LOGO容器 -->
+  <view class="logo-wrapper" style="opacity:{{clearOpacity}};transform:translate(-50%, -50%) scale({{logoScale}});">
+    <!-- 外圈旋转环 -->
+    <view class="outer-ring" style="transform: rotate({{ringRotation}}deg);"></view>
+    <view class="outer-ring ring-reverse" style="transform: rotate({{-ringRotation}}deg);"></view>
+
+    <!-- 内圈点状环 -->
+    <view class="inner-ring">
+      <view class="ring-dot" wx:for="{{8}}" wx:key="index" style="transform: rotate({{index * 45}}deg) translateY(-60rpx);"></view>
+    </view>
+
+    <!-- 中心文字 -->
+    <text class="logo-text-elegant" style="letter-spacing:{{letterSpacing}}rpx;">{{logoLetter}}</text>
+
+    <!-- 底部装饰线 -->
+    <view class="deco-line" style="width:{{lineWidth}}%;"></view>
+  </view>
+
+  <!-- 名字 -->
+  <view class="intro-name" style="opacity:{{nameOpacity}};transform:translate(-50%, calc(-50% + {{floatOffset}}rpx));">
+    <text class="name-text" style="color:{{textColor}};">{{introName}}</text>
+  </view>
+
+  <!-- 跳过按钮 -->
+  <view class="skip-btn" bindtap="skipIntro" style="opacity: {{skipOpacity}};">
+    <text>跳过</text>
+  </view>
+</view>

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "论文详情",
+  "usingComponents": {
+    "poster": "/components/poster/index"
+  }
+}

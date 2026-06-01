@@ -1,0 +1,546 @@
+/* styles/button-system.wxss */
+/* 按钮样式系统 - iOS风格兼容版本 */
+
+/* ============================================
+   按钮设计规范 - 与现有iOS动画兼容
+   ============================================ */
+
+/* --------------------------------------------
+   1. iOS 颜色系统 (iOS Color System)
+   -------------------------------------------- */
+:root {
+  /* iOS 系统蓝 */
+  --ios-blue: #007aff;
+  --ios-blue-hover: #0051d5;
+  --ios-blue-active: #004494;
+  --ios-blue-disabled: rgba(0, 122, 255, 0.3);
+  
+  /* iOS 系统绿 */
+  --ios-green: #34c759;
+  --ios-green-hover: #248a3d;
+  --ios-green-active: #1d6f31;
+  --ios-green-disabled: rgba(52, 199, 89, 0.3);
+  
+  /* iOS 系统橙 */
+  --ios-orange: #ff9500;
+  --ios-orange-hover: #c77700;
+  --ios-orange-active: #a86200;
+  --ios-orange-disabled: rgba(255, 149, 0, 0.3);
+  
+  /* iOS 系统红 */
+  --ios-red: #ff3b30;
+  --ios-red-hover: #c41c14;
+  --ios-red-active: #9e1710;
+  --ios-red-disabled: rgba(255, 59, 48, 0.3);
+  
+  /* iOS 系统灰 */
+  --ios-gray: #8e8e93;
+  --ios-gray-hover: #636366;
+  --ios-gray-active: #48484a;
+  --ios-gray-disabled: rgba(142, 142, 147, 0.3);
+  
+  /* iOS 背景色 */
+  --ios-bg-primary: #ffffff;
+  --ios-bg-secondary: #f2f2f7;
+  --ios-bg-tertiary: #e5e5ea;
+  
+  /* iOS 文字色 */
+  --ios-text-primary: #1c1c1e;
+  --ios-text-secondary: #6b7280;
+  --ios-text-tertiary: #8e8e93;
+  
+  /* iOS 阴影 */
+  --ios-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --ios-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --ios-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+  
+  /* iOS 缓动曲线 */
+  --ios-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --ios-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* --------------------------------------------
+   2. 基础按钮样式 (Base Button)
+   -------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  /* 使用iOS缓动曲线 */
+  transition: all 0.2s var(--ios-ease);
+}
+
+/* iOS 水波纹效果 - 与现有系统一致 */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease;
+}
+
+.btn:active::before {
+  width: 200%;
+  height: 200%;
+}
+
+/* iOS 点击缩放 - 与现有系统一致 */
+.btn:active {
+  transform: scale(0.96);
+}
+
+/* --------------------------------------------
+   3. 按钮尺寸 (Button Sizes)
+   -------------------------------------------- */
+/* 大号按钮 */
+.btn-lg {
+  height: 96rpx;
+  padding: 0 48rpx;
+  border-radius: 16rpx;
+  font-size: 32rpx;
+}
+
+/* 中号按钮 - 默认 */
+.btn-md {
+  height: 80rpx;
+  padding: 0 40rpx;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+}
+
+/* 小号按钮 */
+.btn-sm {
+  height: 64rpx;
+  padding: 0 32rpx;
+  border-radius: 10rpx;
+  font-size: 26rpx;
+}
+
+/* 迷你按钮 */
+.btn-xs {
+  height: 48rpx;
+  padding: 0 20rpx;
+  border-radius: 8rpx;
+  font-size: 22rpx;
+}
+
+/* 全宽按钮 */
+.btn-block {
+  width: 100%;
+}
+
+/* --------------------------------------------
+   4. iOS 按钮变体 (iOS Button Variants)
+   -------------------------------------------- */
+
+/* iOS 主按钮 - 蓝色 */
+.btn-primary {
+  background: var(--ios-blue);
+  color: #ffffff;
+  box-shadow: var(--ios-shadow-sm);
+}
+
+.btn-primary:hover {
+  background: var(--ios-blue-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--ios-shadow-md);
+}
+
+.btn-primary:active {
+  background: var(--ios-blue-active);
+  transform: scale(0.96);
+  box-shadow: var(--ios-shadow-sm);
+}
+
+.btn-primary[disabled] {
+  background: var(--ios-blue-disabled);
+  color: rgba(255, 255, 255, 0.8);
+  box-shadow: none;
+  transform: none;
+}
+
+/* iOS 成功按钮 - 绿色 */
+.btn-success {
+  background: var(--ios-green);
+  color: #ffffff;
+  box-shadow: var(--ios-shadow-sm);
+}
+
+.btn-success:hover {
+  background: var(--ios-green-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--ios-shadow-md);
+}
+
+.btn-success:active {
+  background: var(--ios-green-active);
+  transform: scale(0.96);
+  box-shadow: var(--ios-shadow-sm);
+}
+
+.btn-success[disabled] {
+  background: var(--ios-green-disabled);
+  color: rgba(255, 255, 255, 0.8);
+  box-shadow: none;
+  transform: none;
+}
+
+/* iOS 警告按钮 - 橙色 */
+.btn-warning {
+  background: var(--ios-orange);
+  color: #ffffff;
+  box-shadow: var(--ios-shadow-sm);
+}
+
+.btn-warning:hover {
+  background: var(--ios-orange-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--ios-shadow-md);
+}
+
+.btn-warning:active {
+  background: var(--ios-orange-active);
+  transform: scale(0.96);
+  box-shadow: var(--ios-shadow-sm);
+}
+
+.btn-warning[disabled] {
+  background: var(--ios-orange-disabled);
+  color: rgba(255, 255, 255, 0.8);
+  box-shadow: none;
+  transform: none;
+}
+
+/* iOS 危险按钮 - 红色 */
+.btn-danger {
+  background: var(--ios-red);
+  color: #ffffff;
+  box-shadow: var(--ios-shadow-sm);
+}
+
+.btn-danger:hover {
+  background: var(--ios-red-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--ios-shadow-md);
+}
+
+.btn-danger:active {
+  background: var(--ios-red-active);
+  transform: scale(0.96);
+  box-shadow: var(--ios-shadow-sm);
+}
+
+.btn-danger[disabled] {
+  background: var(--ios-red-disabled);
+  color: rgba(255, 255, 255, 0.8);
+  box-shadow: none;
+  transform: none;
+}
+
+/* iOS 次要按钮 - 灰色 */
+.btn-secondary {
+  background: var(--ios-gray);
+  color: #ffffff;
+  box-shadow: var(--ios-shadow-sm);
+}
+
+.btn-secondary:hover {
+  background: var(--ios-gray-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--ios-shadow-md);
+}
+
+.btn-secondary:active {
+  background: var(--ios-gray-active);
+  transform: scale(0.96);
+  box-shadow: var(--ios-shadow-sm);
+}
+
+.btn-secondary[disabled] {
+  background: var(--ios-gray-disabled);
+  color: rgba(255, 255, 255, 0.8);
+  box-shadow: none;
+  transform: none;
+}
+
+/* iOS 默认/线框按钮 */
+.btn-default {
+  background: var(--ios-bg-primary);
+  color: var(--ios-blue);
+  border: 1rpx solid rgba(0, 122, 255, 0.3);
+  box-shadow: var(--ios-shadow-sm);
+}
+
+.btn-default:hover {
+  background: rgba(0, 122, 255, 0.05);
+  border-color: var(--ios-blue);
+  transform: translateY(-1px);
+  box-shadow: var(--ios-shadow-md);
+}
+
+.btn-default:active {
+  background: rgba(0, 122, 255, 0.1);
+  transform: scale(0.96);
+  box-shadow: var(--ios-shadow-sm);
+}
+
+.btn-default[disabled] {
+  background: var(--ios-bg-secondary);
+  color: var(--ios-text-tertiary);
+  border-color: var(--ios-bg-tertiary);
+  box-shadow: none;
+  transform: none;
+}
+
+/* iOS 文字按钮 */
+.btn-text {
+  background: transparent;
+  color: var(--ios-blue);
+  border: none;
+  box-shadow: none;
+}
+
+.btn-text:hover {
+  background: rgba(0, 122, 255, 0.1);
+}
+
+.btn-text:active {
+  background: rgba(0, 122, 255, 0.15);
+  transform: scale(0.96);
+}
+
+.btn-text[disabled] {
+  color: var(--ios-text-tertiary);
+  background: transparent;
+}
+
+/* --------------------------------------------
+   5. iOS 图标按钮 (iOS Icon Button)
+   -------------------------------------------- */
+.btn-icon-only {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-icon-only.btn-lg {
+  width: 96rpx;
+  height: 96rpx;
+}
+
+.btn-icon-only.btn-md {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.btn-icon-only.btn-sm {
+  width: 64rpx;
+  height: 64rpx;
+}
+
+.btn-icon-only.btn-xs {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+/* 按钮内图标 */
+.btn .icon-font {
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+.btn-icon-left .icon-font {
+  margin-right: 8rpx;
+}
+
+.btn-icon-right .icon-font {
+  margin-left: 8rpx;
+}
+
+/* --------------------------------------------
+   6. iOS 特殊按钮 (iOS Special Buttons)
+   -------------------------------------------- */
+/* 浮动操作按钮 - FAB */
+.btn-fab {
+  position: fixed;
+  right: 40rpx;
+  bottom: 40rpx;
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: 50%;
+  background: var(--ios-blue);
+  color: white;
+  box-shadow: 0 8rpx 24rpx rgba(0, 122, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48rpx;
+  z-index: 100;
+  transition: all 0.3s var(--ios-spring);
+}
+
+.btn-fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12rpx 32rpx rgba(0, 122, 255, 0.5);
+}
+
+.btn-fab:active {
+  transform: scale(0.95);
+}
+
+/* 圆形按钮 */
+.btn-circle {
+  border-radius: 50%;
+  padding: 0;
+}
+
+/* 圆角胶囊按钮 */
+.btn-pill {
+  border-radius: 100rpx;
+}
+
+/* 加载状态 */
+.btn-loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.btn-loading::after {
+  content: '';
+  position: absolute;
+  width: 32rpx;
+  height: 32rpx;
+  border: 4rpx solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: btn-spin 0.8s linear infinite;
+}
+
+@keyframes btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btn-loading .btn-text {
+  opacity: 0;
+}
+
+/* --------------------------------------------
+   7. iOS 按钮组 (iOS Button Group)
+   -------------------------------------------- */
+.btn-group {
+  display: flex;
+  gap: 16rpx;
+}
+
+.btn-group-vertical {
+  flex-direction: column;
+}
+
+.btn-group-horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+/* --------------------------------------------
+   8. 响应式设计 (Responsive)
+   -------------------------------------------- */
+/* 平板适配 */
+@media screen and (min-width: 768px) {
+  .btn-md {
+    height: 88rpx;
+    padding: 0 44rpx;
+    font-size: 30rpx;
+  }
+  
+  .btn-lg {
+    height: 104rpx;
+    padding: 0 52rpx;
+    font-size: 34rpx;
+  }
+}
+
+/* 小屏幕适配 */
+@media screen and (max-width: 375px) {
+  .btn-md {
+    height: 76rpx;
+    padding: 0 36rpx;
+    font-size: 26rpx;
+  }
+}
+
+/* --------------------------------------------
+   9. 触摸设备优化 (Touch Device)
+   -------------------------------------------- */
+@media (hover: none) {
+  .btn:hover {
+    transform: none;
+  }
+  
+  .btn-primary:hover,
+  .btn-success:hover,
+  .btn-warning:hover,
+  .btn-danger:hover,
+  .btn-secondary:hover {
+    background: var(--ios-blue);
+  }
+  
+  .btn-default:hover {
+    background: var(--ios-bg-primary);
+    border-color: rgba(0, 122, 255, 0.3);
+    color: var(--ios-blue);
+  }
+}
+
+/* 确保最小点击区域 44px */
+.btn {
+  min-width: 88rpx;
+  min-height: 88rpx;
+}
+
+.btn-xs {
+  min-width: 64rpx;
+  min-height: 64rpx;
+}
+
+/* --------------------------------------------
+   10. iOS 毛玻璃效果按钮 (iOS Glassmorphism)
+   -------------------------------------------- */
+.btn-glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: 0.5px solid rgba(255, 255, 255, 0.3);
+  color: var(--ios-blue);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.85);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-glass:active {
+  background: rgba(255, 255, 255, 0.6);
+  transform: scale(0.96);
+}

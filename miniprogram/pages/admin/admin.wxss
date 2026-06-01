@@ -1,0 +1,1255 @@
+/* pages/admin/admin.wxss */
+/* iOS 风格后台管理 - 丝滑流畅交互 */
+
+page {
+  background: #f2f2f7;
+  min-height: 100vh;
+  color: #1c1c1e;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ========== iOS 顶部状态栏区域 ========== */
+.ios-header-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ios-header-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1c1c1e;
+  letter-spacing: -0.01em;
+}
+
+/* ========== iOS 毛玻璃导航栏 ========== */
+.admin-header {
+  position: fixed;
+  top: 44px;
+  left: 0;
+  right: 0;
+  height: 52px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 1000;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-logo {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #007aff, #5856d6);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header-logo:active {
+  transform: scale(0.92);
+}
+
+.header-logo-text {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.header-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1c1c1e;
+  letter-spacing: -0.01em;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.admin-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1c1c1e;
+}
+
+.admin-role {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 2px;
+}
+
+.admin-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff9500, #ff6b00);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease;
+}
+
+.admin-avatar:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(255, 149, 0, 0.4);
+}
+
+.admin-avatar:active {
+  transform: scale(0.95);
+}
+
+/* ========== iOS 侧边栏 ========== */
+.admin-sidebar {
+  position: fixed;
+  left: 0;
+  top: 96px;
+  bottom: 0;
+  width: 240px;
+  background: #ffffff;
+  border-right: 0.5px solid rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  z-index: 999;
+  overflow-y: auto;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-section {
+  margin-bottom: 16px;
+}
+
+.sidebar-section-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: #8e8e93;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 8px 12px;
+  margin-bottom: 4px;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  margin: 2px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar-item::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(0, 122, 255, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease;
+}
+
+.sidebar-item:active::before {
+  width: 200%;
+  height: 200%;
+}
+
+.sidebar-item:active {
+  transform: scale(0.98);
+}
+
+.sidebar-item:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.sidebar-item.active {
+  background: rgba(0, 122, 255, 0.1);
+}
+
+.sidebar-item.active .sidebar-icon {
+  color: #007aff;
+  transform: scale(1.1);
+}
+
+.sidebar-item.active .sidebar-name {
+  color: #007aff;
+  font-weight: 500;
+}
+
+.sidebar-icon {
+  font-size: 20px;
+  margin-right: 10px;
+  color: #8e8e93;
+  transition: all 0.2s ease;
+}
+
+.sidebar-name {
+  font-size: 14px;
+  color: #1c1c1e;
+  letter-spacing: -0.01em;
+  transition: all 0.2s ease;
+}
+
+/* ========== iOS 主内容区 ========== */
+.admin-content {
+  margin-left: 240px;
+  padding: 24px;
+  padding-top: 120px;
+  min-height: 100vh;
+  background: #f2f2f7;
+}
+
+.content-module {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.content-module:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.module-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+}
+
+.module-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1c1c1e;
+  letter-spacing: -0.01em;
+}
+
+.module-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* ========== iOS 按钮 ========== */
+.btn-add, .btn-refresh, .btn-confirm, .btn-cancel, .btn-delete, .btn-logout {
+  height: 32px;
+  line-height: 32px;
+  padding: 0 14px;
+  font-size: 13px;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-add, .btn-confirm {
+  background: #007aff;
+  color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 122, 255, 0.3);
+}
+
+.btn-add:hover, .btn-confirm:hover {
+  background: #0051d5;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 122, 255, 0.4);
+}
+
+.btn-add:active, .btn-confirm:active {
+  transform: scale(0.96);
+  box-shadow: 0 1px 2px rgba(0, 122, 255, 0.3);
+}
+
+.btn-refresh, .btn-cancel {
+  background: rgba(0, 0, 0, 0.05);
+  color: #1c1c1e;
+}
+
+.btn-refresh:hover, .btn-cancel:hover {
+  background: rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+.btn-refresh:active, .btn-cancel:active {
+  transform: scale(0.96);
+}
+
+.btn-delete {
+  background: rgba(255, 59, 48, 0.08);
+  color: #ff3b30;
+}
+
+.btn-delete:hover {
+  background: rgba(255, 59, 48, 0.12);
+  transform: translateY(-1px);
+}
+
+.btn-delete:active {
+  transform: scale(0.96);
+}
+
+.btn-logout {
+  background: rgba(255, 59, 48, 0.08);
+  color: #ff3b30;
+  height: 28px;
+  line-height: 28px;
+  padding: 0 12px;
+  font-size: 12px;
+}
+
+.btn-logout:hover {
+  background: rgba(255, 59, 48, 0.12);
+}
+
+.btn-logout:active {
+  transform: scale(0.96);
+}
+
+/* ========== iOS 统计卡片 ========== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 122, 255, 0) 0%, rgba(0, 122, 255, 0.03) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card:hover::before {
+  opacity: 1;
+}
+
+.stat-card:active {
+  transform: scale(0.98) translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.stat-value {
+  display: block;
+  font-size: 28px;
+  font-weight: 700;
+  color: #007aff;
+  margin-bottom: 4px;
+  letter-spacing: -0.5px;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover .stat-value {
+  transform: scale(1.1);
+  color: #0051d5;
+}
+
+.stat-label {
+  display: block;
+  font-size: 12px;
+  color: #8e8e93;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ========== iOS 欢迎区域 ========== */
+.welcome-section {
+  text-align: center;
+  padding: 48px 32px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+}
+
+.welcome-section:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.welcome-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  display: inline-block;
+  animation: ios-float 3s ease-in-out infinite;
+}
+
+@keyframes ios-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.welcome-title {
+  display: block;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1c1c1e;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.welcome-desc {
+  display: block;
+  font-size: 14px;
+  color: #8e8e93;
+}
+
+/* ========== iOS 列表 ========== */
+.word-list, .log-list {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.word-item, .log-item {
+  padding: 16px;
+  background: #ffffff;
+  border-bottom: 0.5px solid #e5e5ea;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.word-item:last-child, .log-item:last-child {
+  border-bottom: none;
+}
+
+.word-item::before, .log-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, rgba(0, 122, 255, 0.05) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.word-item:hover::before, .log-item:hover::before {
+  opacity: 1;
+}
+
+.word-item:hover, .log-item:hover {
+  background: #f9f9fb;
+  transform: translateX(4px);
+}
+
+.word-item:active, .log-item:active {
+  background: #f2f2f7;
+  transform: scale(0.99) translateX(2px);
+}
+
+.word-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.word-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1c1c1e;
+  transition: color 0.2s ease;
+}
+
+.word-item:hover .word-text {
+  color: #007aff;
+}
+
+.word-tags {
+  display: flex;
+  gap: 8px;
+}
+
+.tag {
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.tag:hover {
+  transform: scale(1.05);
+}
+
+.tag-blue {
+  background: rgba(0, 122, 255, 0.12);
+  color: #007aff;
+}
+
+.tag-green {
+  background: rgba(52, 199, 89, 0.12);
+  color: #34c759;
+}
+
+.tag-orange {
+  background: rgba(255, 149, 0, 0.12);
+  color: #ff9500;
+}
+
+.tag-red {
+  background: rgba(255, 59, 48, 0.12);
+  color: #ff3b30;
+}
+
+/* ========== iOS 弹窗 ========== */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.3s ease;
+  animation: fadeInMask 0.3s forwards;
+}
+
+@keyframes fadeInMask {
+  to {
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.modal-container {
+  position: relative;
+  width: 90%;
+  max-width: 340px;
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: ios-modal-pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes ios-modal-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) translateY(50px);
+  }
+  60% {
+    transform: scale(1.05) translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-header {
+  padding: 20px;
+  text-align: center;
+  border-bottom: 0.5px solid #e5e5ea;
+}
+
+.modal-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1c1c1e;
+}
+
+.modal-body {
+  padding: 0;
+}
+
+.form-item {
+  padding: 12px 16px;
+  border-bottom: 0.5px solid #e5e5ea;
+}
+
+.form-item:last-child {
+  border-bottom: none;
+}
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  color: #8e8e93;
+  margin-bottom: 4px;
+}
+
+.form-input, .form-picker {
+  width: 100%;
+  height: 36px;
+  font-size: 16px;
+  color: #1c1c1e;
+  background: transparent;
+  border: none;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.form-input:focus {
+  color: #007aff;
+}
+
+.form-picker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-picker::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-right: 1.5px solid #c7c7cc;
+  border-bottom: 1.5px solid #c7c7cc;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.form-picker:active::after {
+  transform: rotate(225deg);
+}
+
+.modal-footer {
+  display: flex;
+  border-top: 0.5px solid #e5e5ea;
+}
+
+.btn-modal {
+  flex: 1;
+  height: 44px;
+  line-height: 44px;
+  font-size: 17px;
+  text-align: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-modal::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(0, 122, 255, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease;
+}
+
+.btn-modal:active::before {
+  width: 200%;
+  height: 200%;
+}
+
+.btn-modal-cancel {
+  color: #007aff;
+  border-right: 0.5px solid #e5e5ea;
+}
+
+.btn-modal-cancel:hover {
+  background: #f2f2f7;
+}
+
+.btn-modal-confirm {
+  color: #007aff;
+  font-weight: 600;
+}
+
+.btn-modal-confirm:hover {
+  background: #f2f2f7;
+}
+
+.btn-modal:active {
+  transform: scale(0.98);
+}
+
+/* ========== iOS 列表 ========== */
+.word-list, .log-list {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.word-item, .log-item {
+  padding: 16px;
+  background: #ffffff;
+  border-bottom: 0.5px solid #e5e5ea;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.word-item:last-child, .log-item:last-child {
+  border-bottom: none;
+}
+
+.word-item::before, .log-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, rgba(0, 122, 255, 0.05) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.word-item:hover::before, .log-item:hover::before {
+  opacity: 1;
+}
+
+.word-item:hover, .log-item:hover {
+  background: #f9f9fb;
+  transform: translateX(4px);
+}
+
+.word-item:active, .log-item:active {
+  background: #f2f2f7;
+  transform: scale(0.99) translateX(2px);
+}
+
+.word-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.word-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1c1c1e;
+  transition: color 0.2s ease;
+}
+
+.word-item:hover .word-text {
+  color: #007aff;
+}
+
+.word-tags {
+  display: flex;
+  gap: 8px;
+}
+
+.tag {
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.tag:hover {
+  transform: scale(1.05);
+}
+
+.tag-blue {
+  background: rgba(0, 122, 255, 0.12);
+  color: #007aff;
+}
+
+.tag-green {
+  background: rgba(52, 199, 89, 0.12);
+  color: #34c759;
+}
+
+.tag-orange {
+  background: rgba(255, 149, 0, 0.12);
+  color: #ff9500;
+}
+
+.tag-red {
+  background: rgba(255, 59, 48, 0.12);
+  color: #ff3b30;
+}
+
+/* ========== iOS 弹窗 ========== */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.3s ease;
+  animation: fadeInMask 0.3s forwards;
+}
+
+@keyframes fadeInMask {
+  to {
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.modal-container {
+  position: relative;
+  width: 90%;
+  max-width: 340px;
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: ios-modal-pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes ios-modal-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) translateY(50px);
+  }
+  60% {
+    transform: scale(1.05) translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-header {
+  padding: 20px;
+  text-align: center;
+  border-bottom: 0.5px solid #e5e5ea;
+}
+
+.modal-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1c1c1e;
+}
+
+.modal-body {
+  padding: 0;
+}
+
+.form-item {
+  padding: 12px 16px;
+  border-bottom: 0.5px solid #e5e5ea;
+}
+
+.form-item:last-child {
+  border-bottom: none;
+}
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  color: #8e8e93;
+  margin-bottom: 4px;
+}
+
+.form-input, .form-picker {
+  width: 100%;
+  height: 36px;
+  font-size: 16px;
+  color: #1c1c1e;
+  background: transparent;
+  border: none;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.form-input:focus {
+  color: #007aff;
+}
+
+.form-picker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-picker::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-right: 1.5px solid #c7c7cc;
+  border-bottom: 1.5px solid #c7c7cc;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.form-picker:active::after {
+  transform: rotate(225deg);
+}
+
+.modal-footer {
+  display: flex;
+  border-top: 0.5px solid #e5e5ea;
+}
+
+.btn-modal {
+  flex: 1;
+  height: 44px;
+  line-height: 44px;
+  font-size: 17px;
+  text-align: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-modal::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(0, 122, 255, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease;
+}
+
+.btn-modal:active::before {
+  width: 200%;
+  height: 200%;
+}
+
+.btn-modal-cancel {
+  color: #007aff;
+  border-right: 0.5px solid #e5e5ea;
+}
+
+.btn-modal-cancel:hover {
+  background: #f2f2f7;
+}
+
+.btn-modal-confirm {
+  color: #007aff;
+  font-weight: 600;
+}
+
+.btn-modal-confirm:hover {
+  background: #f2f2f7;
+}
+
+.btn-modal:active {
+  transform: scale(0.98);
+}
+
+/* ========== iOS 开关 ========== */
+.ios-switch {
+  position: relative;
+  width: 51px;
+  height: 31px;
+  background: #e5e5ea;
+  border-radius: 15.5px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ios-switch.active {
+  background: #34c759;
+}
+
+.ios-switch-knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 27px;
+  height: 27px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ios-switch.active .ios-switch-knob {
+  transform: translateX(20px);
+}
+
+/* ========== iOS 分段控制器 ========== */
+.ios-segmented-control {
+  display: flex;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  padding: 2px;
+}
+
+.ios-segmented-control-item {
+  flex: 1;
+  padding: 6px 12px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1c1c1e;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.ios-segmented-control-item::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(0, 122, 255, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.ios-segmented-control-item:active::before {
+  width: 150%;
+  height: 150%;
+}
+
+.ios-segmented-control-item.active {
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.ios-segmented-control-item:active {
+  transform: scale(0.96);
+}
+
+/* ========== 响应式 ========== */
+@media (max-width: 768px) {
+  .admin-sidebar {
+    width: 70px;
+    padding: 8px 4px;
+  }
+
+  .sidebar-section-title,
+  .sidebar-name {
+    display: none;
+  }
+
+  .sidebar-icon {
+    margin-right: 0;
+    font-size: 24px;
+  }
+
+  .sidebar-item {
+    justify-content: center;
+    padding: 12px;
+  }
+
+  .admin-content {
+    margin-left: 70px;
+    padding: 16px;
+    padding-top: 110px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .stat-card {
+    padding: 16px;
+  }
+
+  .stat-value {
+    font-size: 24px;
+  }
+
+  .admin-header {
+    padding: 0 12px;
+  }
+
+  .header-title {
+    font-size: 15px;
+  }
+
+  .admin-info {
+    display: none;
+  }
+
+  .content-module {
+    border-radius: 12px;
+    padding: 16px;
+  }
+}
+
+/* ========== 暗色模式支持 ========== */
+@media (prefers-color-scheme: dark) {
+  page {
+    background: #000000;
+    color: #ffffff;
+  }
+
+  .ios-header-bar,
+  .admin-header {
+    background: rgba(28, 28, 30, 0.72);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .ios-header-title,
+  .header-title {
+    color: #ffffff;
+  }
+
+  .admin-sidebar {
+    background: #1c1c1e;
+    border-right-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .sidebar-name {
+    color: #ffffff;
+  }
+
+  .sidebar-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .sidebar-item.active {
+    background: rgba(0, 122, 255, 0.2);
+  }
+
+  .admin-content {
+    background: #000000;
+  }
+
+  .content-module,
+  .ios-list,
+  .stat-card {
+    background: #1c1c1e;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  .module-title {
+    color: #ffffff;
+  }
+
+  .ios-list-item {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .ios-list-item:active {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .word-text,
+  .log-action {
+    color: #ffffff;
+  }
+
+  .log-detail,
+  .welcome-desc {
+    color: #8e8e93;
+  }
+
+  .modal-container {
+    background: #1c1c1e;
+  }
+
+  .modal-title {
+    color: #ffffff;
+  }
+
+  .form-input {
+    color: #ffffff;
+    background: transparent;
+  }
+
+  .btn-refresh,
+  .btn-cancel {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+  }
+}

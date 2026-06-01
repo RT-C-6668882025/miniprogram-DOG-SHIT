@@ -1,0 +1,175 @@
+/* 开场动画 - 学术极简风 */
+
+.intro-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+/* ========== 顶部装饰条 ========== */
+.intro-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--academic-blue), var(--academic-blue-light));
+  z-index: 100;
+}
+
+/* ========== 简洁网格背景 ========== */
+.grid-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(var(--academic-border-light) 1rpx, transparent 1rpx),
+    linear-gradient(90deg, var(--academic-border-light) 1rpx, transparent 1rpx);
+  background-size: 40rpx 40rpx;
+  opacity: 0.3;
+  z-index: 0;
+}
+
+/* ========== 精致LOGO容器 ========== */
+.logo-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-align: center;
+}
+
+/* 外圈方框 - 模仿期刊边框 */
+.outer-frame {
+  position: relative;
+  width: 280rpx;
+  height: 280rpx;
+  border: 2rpx solid var(--academic-blue);
+  padding: 40rpx;
+  background: #ffffff;
+  box-shadow: 0 8rpx 40rpx rgba(30, 58, 95, 0.1);
+}
+
+/* 装饰角标 */
+.corner {
+  position: absolute;
+  width: 20rpx;
+  height: 20rpx;
+  border-style: solid;
+  border-color: var(--academic-blue);
+}
+
+.corner-tl {
+  top: -2rpx;
+  left: -2rpx;
+  border-width: 3rpx 0 0 3rpx;
+}
+
+.corner-tr {
+  top: -2rpx;
+  right: -2rpx;
+  border-width: 3rpx 3rpx 0 0;
+}
+
+.corner-bl {
+  bottom: -2rpx;
+  left: -2rpx;
+  border-width: 0 0 3rpx 3rpx;
+}
+
+.corner-br {
+  bottom: -2rpx;
+  right: -2rpx;
+  border-width: 0 3rpx 3rpx 0;
+}
+
+/* 期刊名称 */
+.journal-title {
+  font-family: 'Times New Roman', serif;
+  font-size: 48rpx;
+  font-weight: 600;
+  letter-spacing: 6rpx;
+  color: var(--academic-blue);
+  margin-bottom: 8rpx;
+}
+
+.journal-sub {
+  font-size: 20rpx;
+  color: var(--academic-grey);
+  letter-spacing: 3rpx;
+  text-transform: uppercase;
+  margin-bottom: 20rpx;
+}
+
+/* 装饰线 */
+.deco-line {
+  width: 80rpx;
+  height: 2rpx;
+  background: var(--academic-blue);
+  margin: 0 auto;
+}
+
+/* ========== 名字 ========== */
+.intro-name {
+  position: absolute;
+  top: calc(50% + 200rpx);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  text-align: center;
+}
+
+.name-text {
+  font-family: 'Times New Roman', serif;
+  font-size: 32rpx;
+  font-weight: 400;
+  letter-spacing: 4rpx;
+  color: var(--academic-grey);
+  text-transform: uppercase;
+}
+
+/* ========== 跳过按钮 ========== */
+.skip-btn {
+  position: absolute;
+  bottom: 80rpx;
+  right: 40rpx;
+  padding: 14rpx 28rpx;
+  background: #ffffff;
+  border: 1rpx solid var(--academic-border);
+  border-radius: 4rpx;
+  z-index: 100;
+}
+
+.skip-btn text {
+  font-family: 'Times New Roman', serif;
+  font-size: 22rpx;
+  color: var(--academic-grey);
+}
+
+.skip-btn:active {
+  background: var(--academic-bg);
+  border-color: var(--academic-blue);
+}
+
+/* ========== 淡入动画 ========== */
+.fade-in-element {
+  animation: academicFadeIn 1.2s ease-out both;
+}
+
+@keyframes academicFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20rpx);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

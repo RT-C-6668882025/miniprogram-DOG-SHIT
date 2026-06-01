@@ -1,0 +1,8 @@
+{
+  "envId": "your-env-id",
+  "functionName": "paperGenerator",
+  "runtime": "Nodejs16.13",
+  "timeout": 60,
+  "memorySize": 512,
+  "handler": "index.main"
+}

@@ -1,0 +1,112 @@
+<!--荒谬论文生成页 - 集成AI对话功能-->
+<view class="paper-page">
+  <!-- 顶部装饰条 -->
+  <view class="academic-header"></view>
+
+  <!-- API配置栏 - 固定在顶部 -->
+  <view class="api-config-bar">
+    <view class="config-info">
+      <text class="config-label">DeepSeek API</text>
+      <text class="config-status {{apiKey ? 'configured' : 'unconfigured'}}">
+        {{apiKey ? '已配置' : '未配置'}}
+      </text>
+    </view>
+    <button class="config-btn" bindtap="showSettings">
+      {{apiKey ? '修改配置' : '配置 API Key'}}
+    </button>
+  </view>
+
+  <!-- 期刊标题区 -->
+  <view class="journal-header">
+    <text class="journal-name">NATURE</text>
+    <text class="journal-subtitle">Absurdity Edition</text>
+    <view class="divider-line"></view>
+  </view>
+
+  <!-- 主内容区 -->
+  <view class="main-content">
+    <!-- 未配置API Key时的提示 -->
+    <block wx:if="{{!apiKey}}">
+      <view class="empty-state">
+        <text class="empty-icon">🔑</text>
+        <text class="empty-title">请先配置API Key</text>
+        <text class="empty-desc">需要DeepSeek API Key才能生成荒谬论文</text>
+        <button class="action-btn primary" bindtap="showSettings">立即配置</button>
+      </view>
+    </block>
+
+    <!-- 已配置API Key -->
+    <block wx:else>
+      <!-- 生成的论文展示 -->
+      <block wx:if="{{generatedPaper}}">
+        <view class="paper-result" bindtap="viewPaperDetail">
+          <view class="result-header">
+            <text class="result-title">{{generatedPaper.title}}</text>
+            <text class="result-time">{{generatedPaper.createTime}}</text>
+          </view>
+          <scroll-view class="result-content" scroll-y="true">
+            <text class="paper-text">{{generatedPaper.content}}</text>
+          </scroll-view>
+          <view class="result-actions">
+            <button class="action-btn secondary" catchtap="savePaper">复制内容</button>
+            <button class="action-btn primary" catchtap="quickGenerate">重新生成</button>
+            <button class="action-btn info" catchtap="viewPaperDetail">查看详情</button>
+          </view>
+        </view>
+      </block>
+
+      <!-- 初始状态 -->
+      <block wx:if="{{!generatedPaper}}">
+        <view class="welcome-state">
+          <text class="welcome-icon">📝</text>
+          <text class="welcome-title">荒谬论文生成器</text>
+          <text class="welcome-desc">输入任意荒谬主题，AI将为您生成一篇结构严谨的学术论文</text>
+          <view class="example-topics">
+            <text class="example-title">示例主题：</text>
+            <view class="topic-tags">
+              <text class="topic-tag">量子拖鞋对猫咪情绪的影响</text>
+              <text class="topic-tag">香蕉皮在星际航行中的应用</text>
+              <text class="topic-tag">袜子失踪现象的量子力学解释</text>
+            </view>
+          </view>
+        </view>
+      </block>
+    </block>
+  </view>
+
+  <!-- 右下角快速生成按钮 -->
+  <view class="float-generate-btn {{!apiKey ? 'disabled' : ''}}" bindtap="quickGenerate">
+    <text class="float-btn-icon">✨</text>
+    <text class="float-btn-text">生成论文</text>
+  </view>
+
+  <!-- API配置对话框 - 使用hidden属性而非wx:if避免渲染层错误 -->
+  <view class="settings-modal" hidden="{{!showSettingsModal}}">
+    <view class="modal-mask" bindtap="closeSettings"></view>
+    <view class="modal-content" catchtap="preventBubble">
+      <view class="modal-header">
+        <text class="modal-title">配置 DeepSeek API</text>
+        <view class="modal-close" bindtap="closeSettings">✕</view>
+      </view>
+      <view class="modal-body">
+        <view class="form-item">
+          <text class="form-label">API Key</text>
+          <input
+            class="form-input"
+            type="text"
+            placeholder="请输入DeepSeek API Key (以sk-开头)"
+            value="{{tempApiKey}}"
+            bindinput="onApiKeyInput"
+          />
+        </view>
+        <view class="form-hint">
+          <text class="hint-text">💡 获取方式：访问 DeepSeek 开放平台 (platform.deepseek.com) 创建API Key</text>
+        </view>
+      </view>
+      <view class="modal-footer">
+        <button class="modal-btn cancel" bindtap="closeSettings">取消</button>
+        <button class="modal-btn confirm" bindtap="saveSettings">保存</button>
+      </view>
+    </view>
+  </view>
+</view>

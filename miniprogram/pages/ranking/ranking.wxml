@@ -1,0 +1,57 @@
+<!--荒谬学术排行榜 - 学术极简风-->
+<view class="ranking-page">
+  <!-- 顶部装饰条 -->
+  <view class="academic-header"></view>
+
+  <!-- 期刊标题区 -->
+  <view class="journal-header">
+    <text class="journal-name">RANKING</text>
+    <text class="journal-subtitle">Absurdity Impact Factor</text>
+    <view class="divider-line"></view>
+  </view>
+
+  <!-- 标签切换 -->
+  <view class="tab-container">
+    <view class="tab-item {{activeTab === 'weekly' ? 'active' : ''}}" bindtap="switchTab" data-tab="weekly">
+      <text class="tab-text">本周一区榜</text>
+    </view>
+    <view class="tab-item {{activeTab === 'absurdity' ? 'active' : ''}}" bindtap="switchTab" data-tab="absurdity">
+      <text class="tab-text">荒谬指数榜</text>
+    </view>
+    <view class="tab-item {{activeTab === 'logic' ? 'active' : ''}}" bindtap="switchTab" data-tab="logic">
+      <text class="tab-text">反人类逻辑榜</text>
+    </view>
+  </view>
+
+  <!-- 排行榜列表 -->
+  <view class="ranking-list">
+    <view class="ranking-item" wx:for="{{rankingList}}" wx:key="id" bindtap="viewPaper" data-id="{{item.id}}">
+      <!-- 排名 -->
+      <view class="rank-badge rank-{{item.rank <= 3 ? item.rank : 'normal'}}">
+        <text class="rank-text">{{item.rank}}</text>
+      </view>
+
+      <!-- 论文信息 -->
+      <view class="paper-info">
+        <text class="paper-title">{{item.title}}</text>
+        <view class="paper-meta">
+          <text class="meta-item zone-{{item.zone}}">{{item.zone}}</text>
+          <text class="meta-item">AIF {{item.aif}}</text>
+          <text class="meta-item">DOI: {{item.doi}}</text>
+        </view>
+      </view>
+
+      <!-- 引用数 -->
+      <view class="citation-count">
+        <text class="citation-number">{{item.citations}}</text>
+        <text class="citation-label"> citations</text>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{rankingList.length === 0}}">
+      <text class="empty-text">暂无数据</text>
+      <text class="empty-hint">成为第一个创作者吧</text>
+    </view>
+  </view>
+</view>
